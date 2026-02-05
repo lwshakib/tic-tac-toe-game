@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "dev": "mprocs"
+    },
+    "dependencies": {
+        "mprocs": "^0.7.3"
+    }
+}

@@ -8,6 +8,13 @@ The following is a set of guidelines for contributing to this project. These are
 
 This project and everyone participating in it is governed by the [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
+## Project Structure
+
+This is a monorepo consisting of:
+- `server/`: The Socket.IO backend.
+- `web/`: The Next.js frontend.
+- `assets/`: Project assets including demo images.
+
 ## How Can I Contribute?
 
 ### Reporting Bugs
@@ -45,7 +52,8 @@ This section guides you through submitting an enhancement suggestion, including 
 -   Use the present tense ("Add feature" not "Added feature")
 -   Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 -   Limit the first line to 72 characters or less
--   Reference issues and pull requests liberally after the first line
+-   **Be detailed**: Provide context on what was changed and why in the message body.
+-   Reference issues and pull requests liberally after the first line.
 
 ### Coding Guidelines
 
@@ -55,10 +63,10 @@ This section guides you through submitting an enhancement suggestion, including 
 
 **Frontend (Web)**
 -   We strictly adhere to a **Minimalist/Brutalist** design aesthetic.
-    -   **No primary colors**. Use Black, White, and Grays.
-    -   **Uppercase typography** for headers and labels.
-    -   **Sharp corners** (no rounded-full buttons unless explicitly requested).
-    -   **Mobile-first** responsive design.
+-   **No primary colors**. Use Black, White, and Grays.
+-   **Uppercase typography** for headers and labels.
+-   **Sharp corners** (no rounded-full buttons unless explicitly requested).
+-   **Mobile-first** responsive design.
 -   Components should be functional and "Node-like" in naming conventions where possible.
 
 **Backend (Server)**
