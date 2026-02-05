@@ -1,10 +1,10 @@
 procs:
   server:
     cwd: server
-    shell: "npm run dev"
+    shell: "bun run dev"
     autoRestart: true
 
   web:
     cwd: web
-    shell: "npm run dev"
+    shell: "bun run dev"
     autoRestart: true

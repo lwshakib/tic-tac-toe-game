@@ -1,8 +1,11 @@
 {
     "scripts": {
-        "dev": "mprocs"
+        "dev": "mprocs",
+        "install:all": "bun install && bun install --prefix web && bun install --prefix server"
     },
     "dependencies": {
-        "mprocs": "^0.7.3"
+        "mprocs": "^0.7.3",
+        "server": "^1.0.42",
+        "web": "^0.0.2"
     }
 }
