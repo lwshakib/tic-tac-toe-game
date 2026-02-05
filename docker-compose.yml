@@ -1,0 +1,35 @@
+# Docker Compose configuration to orchestrate the backend and frontend services
+services:
+  # Game backend service (Socket.IO server)
+  server:
+    # Build configuration for the server service
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    # Map host port 3001 to container port 3001
+    ports:
+      - "3001:3001"
+    # Set environment variables for the server
+    environment:
+      - PORT=3001
+    # Restart policy
+    restart: always
+
+  # Game frontend service (Next.js application)
+  web:
+    # Build configuration for the web service
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    # Map host port 3000 to container port 3000
+    ports:
+      - "3000:3000"
+    # Pass environment variables to the frontend build process
+    # Note: NEXT_PUBLIC_ variables must be available at build time for Next.js to embed them
+    environment:
+      - NEXT_PUBLIC_SOCKET_URL=http://localhost:3001
+    # Ensure the server is started before the web client
+    depends_on:
+      - server
+    # Restart policy
+    restart: always

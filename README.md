@@ -46,10 +46,11 @@ This project reimagines the classic Tic-Tac-Toe game as a **"Multiplayer Grid Pr
 │   ├── src/            # Server source code (fully documented)
 │   ├── Dockerfile      # Container configuration for backend
 │   └── package.json    # Backend dependencies
-└── web/                # Next.js frontend application
-    ├── app/            # Next.js App Router (fully documented)
-    ├── Dockerfile      # Container configuration for frontend
-    └── package.json    # Frontend dependencies
+├── web/                # Next.js frontend application
+│   ├── app/            # Next.js App Router (fully documented)
+│   ├── Dockerfile      # Container configuration for frontend
+│   └── package.json    # Frontend dependencies
+└── docker-compose.yml  # Orchestration for both services
 ```
 
 ## 🚀 Getting Started
@@ -57,7 +58,7 @@ This project reimagines the classic Tic-Tac-Toe game as a **"Multiplayer Grid Pr
 ### Prerequisites
 
 -   [Bun](https://bun.sh/) (v1.1.0 or later)
--   [Docker](https://www.docker.com/) (Optional, for containerized deployment)
+-   [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/) (Optional)
 
 ### Local Installation
 
@@ -103,16 +104,24 @@ The client will start on `http://localhost:3000`.
 
 ## 🐳 Running with Docker
 
-You can run both the server and the web application using the provided Dockerfiles.
+### Using Docker Compose (Recommended)
+The simplest way to run the entire stack is using Docker Compose:
 
-### 1. Build and Run Server
+```bash
+docker-compose up --build
+```
+This will build both images and start the services. The web app will be available at `http://localhost:3000` and the server at `http://localhost:3001`.
+
+### Individual Containers
+
+#### 1. Build and Run Server
 ```bash
 cd server
 docker build -t ttt-server .
 docker run -p 3001:3001 ttt-server
 ```
 
-### 2. Build and Run Web Client
+#### 2. Build and Run Web Client
 Note: Ensure the `NEXT_PUBLIC_SOCKET_URL` points to your running server.
 ```bash
 cd web
