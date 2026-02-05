@@ -5,11 +5,11 @@
     "": {
       "name": "server",
       "dependencies": {
-        "@types/socket.io": "^3.0.2",
         "socket.io": "^4.8.3",
       },
       "devDependencies": {
         "@types/bun": "latest",
+        "@types/socket.io": "^3.0.2",
       },
       "peerDependencies": {
         "typescript": "^5",
