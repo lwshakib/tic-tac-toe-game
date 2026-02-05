@@ -39,17 +39,16 @@ This project reimagines the classic Tic-Tac-Toe game as a **"Multiplayer Grid Pr
 
 ## 🏗 Project Structure
 
-The project is managed as a monorepo for seamless development:
-
 ```text
 .
 ├── assets/             # Project assets and demos
 ├── server/             # Socket.IO backend service
-│   ├── src/            # Server source code
+│   ├── src/            # Server source code (fully documented)
+│   ├── Dockerfile      # Container configuration for backend
 │   └── package.json    # Backend dependencies
 └── web/                # Next.js frontend application
-    ├── app/            # Next.js App Router
-    ├── components/     # UI Components
+    ├── app/            # Next.js App Router (fully documented)
+    ├── Dockerfile      # Container configuration for frontend
     └── package.json    # Frontend dependencies
 ```
 
@@ -57,9 +56,10 @@ The project is managed as a monorepo for seamless development:
 
 ### Prerequisites
 
--   [Bun](https://bun.sh/) (v1.0.0 or later)
+-   [Bun](https://bun.sh/) (v1.1.0 or later)
+-   [Docker](https://www.docker.com/) (Optional, for containerized deployment)
 
-### Installation
+### Local Installation
 
 1.  **Clone the repository**
     ```bash
@@ -67,36 +67,60 @@ The project is managed as a monorepo for seamless development:
     cd tic-tac-toe-game
     ```
 
-2.  **Install Dependencies**
-    You can install dependencies for the entire project from the root:
-
+2.  **Setup Server**
     ```bash
-    # Install server dependencies
     cd server
     bun install
+    ```
 
-    # Install web dependencies
+3.  **Setup Web Client**
+    ```bash
     cd ../web
     bun install
     ```
 
-### Running the Application
+### Running Locally (Development)
 
-For a smooth development experience, it's recommended to run both services simultaneously.
+For a smooth development experience, run both services in separate terminals.
 
-**Terminal 1: Server**
+**Terminal 1: Backend Server**
 ```bash
 cd server
 bun run dev
 ```
 The server will start on `http://localhost:3001`.
 
-**Terminal 2: Web Client**
+**Terminal 2: Frontend Web Client**
 ```bash
 cd web
+# Optional: Set the socket URL if different from default
+# export NEXT_PUBLIC_SOCKET_URL=http://your-ip:3001 
 bun run dev
 ```
 The client will start on `http://localhost:3000`.
+
+---
+
+## 🐳 Running with Docker
+
+You can run both the server and the web application using the provided Dockerfiles.
+
+### 1. Build and Run Server
+```bash
+cd server
+docker build -t ttt-server .
+docker run -p 3001:3001 ttt-server
+```
+
+### 2. Build and Run Web Client
+Note: Ensure the `NEXT_PUBLIC_SOCKET_URL` points to your running server.
+```bash
+cd web
+docker build -t ttt-web .
+docker run -p 3000:3000 ttt-web
+```
+
+---
 
 ## 🤝 Contributing
 
