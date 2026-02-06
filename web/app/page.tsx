@@ -142,136 +142,137 @@ export default function TicTacToe() { // Main component function for the Tic-Tac
 
     if (!joined) { // Conditional rendering for the initial lobby/landing screen
         return ( // Return the lobby UI
-            <div className="min-h-screen bg-white flex items-center justify-center p-4 font-sans text-black text-[12px]"> // Main wrapper with styling
-                <div className="max-w-5xl w-full space-y-8"> // Content container with spacing
-                    <div className="text-center border-2 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white"> // Header section
-                        <h1 className="text-4xl font-black uppercase tracking-[0.2em]">Tic Tac Toe</h1> // Game title
-                        <p className="text-gray-500 text-[10px] font-bold uppercase mt-2 tracking-widest italic">Multiplayer Grid Protocol</p> // Subtitle/Theme
+            <div className="min-h-screen bg-white flex items-center justify-center p-4 font-sans text-black text-[12px]"> {/* Main wrapper with styling */}
+                <div className="max-w-5xl w-full space-y-8"> {/* Content container with spacing */}
+                    <div className="text-center border-2 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] bg-white"> {/* Header section */}
+                        <h1 className="text-4xl font-black uppercase tracking-[0.2em]">Tic Tac Toe</h1> {/* Game title */}
+                        <p className="text-gray-500 text-[10px] font-bold uppercase mt-2 tracking-widest italic">Multiplayer Grid Protocol</p> {/* Subtitle/Theme */}
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start"> // Main grid for lobby sections
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start"> {/* Main grid for lobby sections */}
                         {/* Step 1: Persona */}
-                        <div className="border-2 border-black p-6 space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> // Section for user identity
-                            <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">1. Your Persona</h2> // Section header
-                            <div className="space-y-4"> // Input group
-                                <div className="space-y-2"> // Name input wrapper
-                                    <label className="text-[10px] font-black uppercase text-gray-400">Handle / Alias</label> // Input label
-                                    <div className="relative"> // Input field container
-                                        <User className="absolute left-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" /> // Icon inside input
-                                        <input // Input element for player name
-                                            type="text" // Standard text input
-                                            placeholder="John Doe..." // Placeholder text
-                                            value={playerName} // Controlled value from state
-                                            onChange={(e) => setPlayerName(e.target.value)} // Update state on typing
-                                            className="w-full pl-10 pr-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 transition-all font-bold uppercase" // Styling
+                        <div className="border-2 border-black p-6 space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> {/* Section for user identity */}
+                            <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">1. Your Persona</h2> {/* Section header */}
+                            <div className="space-y-4"> {/* Input group */}
+                                <div className="space-y-2"> {/* Name input wrapper */}
+                                    <label className="text-[10px] font-black uppercase text-gray-400">Handle / Alias</label> {/* Input label */}
+                                    <div className="relative"> {/* Input field container */}
+                                        <User className="absolute left-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" /> {/* Icon inside input */}
+                                        {/* Input element for player name */}
+                                        <input
+                                            type="text"
+                                            placeholder="John Doe..."
+                                            value={playerName}
+                                            onChange={(e) => setPlayerName(e.target.value)}
+                                            className="w-full pl-10 pr-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 transition-all font-bold uppercase"
                                         />
                                     </div>
                                 </div>
                             </div>
-                            {error && ( // Conditional error display
-                                <div className="p-3 bg-black text-white text-[10px] font-mono text-center border-2 border-black animate-pulse uppercase"> // Error message box
-                                    Status: {error} // Content of the error
+                            {error && (
+                                <div className="p-3 bg-black text-white text-[10px] font-mono text-center border-2 border-black animate-pulse uppercase"> {/* Error message box */}
+                                    Status: {error} {/* Content of the error */}
                                 </div>
                             )}
                         </div>
 
                         {/* Connection Controls */}
-                        <div className="space-y-8"> // Middle column for room connection
-                            <div className="border-2 border-black p-6 space-y-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> // Join room container
-                                <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">2. Connect To Room</h2> // Header for join section
-                                <div className="space-y-3"> // Input and button group
-                                    {needsPassword ? ( // Conditional password prompt UI
-                                        <div className="border-2 border-black p-3 bg-gray-50 flex items-center justify-between animate-in fade-in duration-300"> // Auth status box
-                                            <div className="flex items-center gap-2"> // Room info
-                                                <Lock className="w-3 h-3 text-gray-400" /> // Lock icon
-                                                <span className="font-bold uppercase text-[10px]">AUTH: {joinRoomId}</span> // Display room being authenticated
+                        <div className="space-y-8"> {/* Middle column for room connection */}
+                            <div className="border-2 border-black p-6 space-y-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> {/* Join room container */}
+                                <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">2. Connect To Room</h2> {/* Header for join section */}
+                                <div className="space-y-3"> {/* Input and button group */}
+                                    {needsPassword ? (
+                                        <div className="border-2 border-black p-3 bg-gray-50 flex items-center justify-between animate-in fade-in duration-300"> {/* Auth status box */}
+                                            <div className="flex items-center gap-2"> {/* Room info */}
+                                                <Lock className="w-3 h-3 text-gray-400" /> {/* Lock icon */}
+                                                <span className="font-bold uppercase text-[10px]">AUTH: {joinRoomId}</span> {/* Display room being authenticated */}
                                             </div>
-                                            <button // Button to go back to ID entry
+                                            <button
                                                 onClick={() => { // Reset auth-related states
                                                     setNeedsPassword(false); // Hide password field
                                                     setJoinRoomId(''); // Clear ID
                                                     setJoinPassword(''); // Clear password
                                                     setError(''); // Clear errors
                                                 }}
-                                                className="text-[8px] font-black uppercase hover:underline text-gray-400 hover:text-black" // Styling
+                                                className="text-[8px] font-black uppercase hover:underline text-gray-400 hover:text-black"
                                             >
                                                 Back
                                             </button>
                                         </div>
-                                    ) : ( // Default room ID input
-                                        <input // Input element for room ID
-                                            type="text" // Multi-char text input
-                                            placeholder="Room ID" // Placeholder
-                                            value={joinRoomId} // State binding
-                                            onChange={(e) => { // Value change handler
-                                                setJoinRoomId(e.target.value); // Update ID
-                                                setNeedsPassword(false); // Reset password state if typing new ID
+                                    ) : (
+                                        <input
+                                            type="text"
+                                            placeholder="Room ID"
+                                            value={joinRoomId}
+                                            onChange={(e) => {
+                                                setJoinRoomId(e.target.value);
+                                                setNeedsPassword(false);
                                             }}
-                                            className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 font-bold uppercase" // Formatting
+                                            className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 font-bold uppercase"
                                         />
                                     )}
 
-                                    {(needsPassword || (joinRoomId && roomList.find(r => r.name.toUpperCase() === joinRoomId.toUpperCase())?.isPrivate)) && !isLinkJoin && ( // Show password field if needed
-                                        <div className="relative animate-in slide-in-from-top-2 duration-200"> // Animation wrapper
-                                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" /> // Icon
-                                            <input // Password input field
-                                                type="password" // Hidden characters
-                                                placeholder="Access Password" // Placeholder
-                                                value={joinPassword} // State binding
-                                                onChange={(e) => setJoinPassword(e.target.value)} // Change handler
-                                                className="w-full pl-10 pr-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50" // Stylistic classes
-                                                autoFocus // Focus automatically for convenience
+                                    {(needsPassword || (joinRoomId && roomList.find(r => r.name.toUpperCase() === joinRoomId.toUpperCase())?.isPrivate)) && !isLinkJoin && (
+                                        <div className="relative animate-in slide-in-from-top-2 duration-200">
+                                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-black w-4 h-4" />
+                                            <input
+                                                type="password"
+                                                placeholder="Access Password"
+                                                value={joinPassword}
+                                                onChange={(e) => setJoinPassword(e.target.value)}
+                                                className="w-full pl-10 pr-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50"
+                                                autoFocus
                                             />
                                         </div>
                                     )}
-                                    <button // Primary action button for joining
-                                        onClick={() => connectRoom()} // Call join function
-                                        className="w-full py-3 bg-black text-white font-black uppercase tracking-[0.2em] text-[10px] hover:bg-gray-800 transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-[4px_4px_0px_0px_rgba(150,150,150,1)]" // Neo-brutalism design style
+                                    <button
+                                        onClick={() => connectRoom()}
+                                        className="w-full py-3 bg-black text-white font-black uppercase tracking-[0.2em] text-[10px] hover:bg-gray-800 transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-[4px_4px_0px_0px_rgba(150,150,150,1)]"
                                     >
-                                        {needsPassword ? 'Authorize' : 'Connect'} // Dynamic label based on state
+                                        {needsPassword ? 'Authorize' : 'Connect'}
                                     </button>
                                 </div>
                             </div>
 
                             {/* Create Section */}
-                            <div className="border-2 border-black p-6 space-y-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> // Container for room initialization
-                                <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">3. Initialize New</h2> // Section title
-                                <div className="space-y-4"> // Column layout for inputs
-                                    <input // Name input for new room
-                                        type="text" // Text type
-                                        placeholder="New Room Name" // Placeholder
-                                        value={createRoomName} // Controlled value
-                                        onChange={(e) => setCreateRoomName(e.target.value)} // Update state
-                                        className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 font-bold uppercase" // Styles
+                            <div className="border-2 border-black p-6 space-y-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white"> {/* Container for room initialization */}
+                                <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">3. Initialize New</h2> {/* Section title */}
+                                <div className="space-y-4"> {/* Column layout for inputs */}
+                                    <input
+                                        type="text"
+                                        placeholder="New Room Name"
+                                        value={createRoomName}
+                                        onChange={(e) => setCreateRoomName(e.target.value)}
+                                        className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 font-bold uppercase"
                                     />
-                                    <div className="flex gap-2 text-[10px]"> // Toggle buttons for privacy
-                                        <button // Button for Public choice
-                                            onClick={() => setIsPrivate(false)} // Set state to public
-                                            className={`flex-1 py-3 border-2 border-black font-black uppercase transition-all ${!isPrivate ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'}`} // Conditional styling
+                                    <div className="flex gap-2 text-[10px]"> {/* Toggle buttons for privacy */}
+                                        <button
+                                            onClick={() => setIsPrivate(false)}
+                                            className={`flex-1 py-3 border-2 border-black font-black uppercase transition-all ${!isPrivate ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'}`}
                                         >
                                             Public
                                         </button>
-                                        <button // Button for Private choice
-                                            onClick={() => setIsPrivate(true)} // Set state to private
-                                            className={`flex-1 py-3 border-2 border-black font-black uppercase transition-all ${isPrivate ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'}`} // Conditional styling
+                                        <button
+                                            onClick={() => setIsPrivate(true)}
+                                            className={`flex-1 py-3 border-2 border-black font-black uppercase transition-all ${isPrivate ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'}`}
                                         >
                                             Private
                                         </button>
                                     </div>
-                                    {isPrivate && ( // Password field if private is selected
-                                        <div className="animate-in slide-in-from-top-2 duration-200"> // Entry animation
-                                            <input // Password input for creation
-                                                type="password" // Hidden text
-                                                placeholder="Access Password" // Placeholder
-                                                value={createPassword} // State binding
-                                                onChange={(e) => setCreatePassword(e.target.value)} // Change handler
-                                                className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 italic" // Formatting
+                                    {isPrivate && (
+                                        <div className="animate-in slide-in-from-top-2 duration-200"> {/* Entry animation */}
+                                            <input
+                                                type="password"
+                                                placeholder="Access Password"
+                                                value={createPassword}
+                                                onChange={(e) => setCreatePassword(e.target.value)}
+                                                className="w-full px-4 py-3 bg-white border-2 border-black focus:outline-none focus:bg-gray-50 italic"
                                             />
                                         </div>
                                     )}
-                                    <button // Button to finalize room creation
-                                        onClick={createRoom} // Execution handler
-                                        className="w-full py-3 bg-white text-black border-2 border-black font-black uppercase tracking-[0.2em] text-[10px] hover:bg-gray-100 transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" // Designer styling
+                                    <button
+                                        onClick={createRoom}
+                                        className="w-full py-3 bg-white text-black border-2 border-black font-black uppercase tracking-[0.2em] text-[10px] hover:bg-gray-100 transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                                     >
                                         Initialize
                                     </button>
@@ -280,47 +281,47 @@ export default function TicTacToe() { // Main component function for the Tic-Tac
                         </div>
 
                         {/* Room List Section */}
-                        <div className="border-2 border-black p-6 space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white h-full min-h-[400px]"> // Section showing live rooms
-                            <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">Live Nodes</h2> // List header
-                            {roomList.length === 0 ? ( // Display when no rooms are active
-                                <div className="flex flex-col items-center justify-center py-20 text-gray-300 space-y-4"> // Empty state wrapper
-                                    <Globe className="w-12 h-12" /> // Visual indicator
-                                    <p className="text-[8px] font-black uppercase tracking-widest text-center px-4">Observation: No active nodes detected.</p> // Empty message
+                        <div className="border-2 border-black p-6 space-y-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white h-full min-h-[400px]"> {/* Section showing live rooms */}
+                            <h2 className="text-[10px] font-black uppercase tracking-wider border-b-2 border-black pb-2">Live Nodes</h2> {/* List header */}
+                            {roomList.length === 0 ? (
+                                <div className="flex flex-col items-center justify-center py-20 text-gray-300 space-y-4"> {/* Empty state wrapper */}
+                                    <Globe className="w-12 h-12" /> {/* Visual indicator */}
+                                    <p className="text-[8px] font-black uppercase tracking-widest text-center px-4">Observation: No active nodes detected.</p> {/* Empty message */}
                                 </div>
-                            ) : ( // Display if rooms are available
-                                <div className="space-y-4 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar"> // Scrollable list container
-                                    {roomList.map(r => ( // Map through list items
-                                        <div key={r.name} className="border-2 border-black p-4 space-y-4 hover:bg-gray-50 transition-colors bg-white group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"> // Room item card
-                                            <div className="flex justify-between items-start"> // Card layout
-                                                <div className="space-y-1"> // Room info group
-                                                    <p className="font-bold text-[10px] uppercase tracking-tighter">{r.name}</p> // Display room name
-                                                    <div className="flex items-center gap-2"> // Status indicators
-                                                        <span className={`text-[8px] px-1.5 py-0.5 border border-black font-black uppercase ${r.isPrivate ? 'bg-gray-100 text-black' : 'bg-black text-white'}`}> // Privacy tag
-                                                            {r.isPrivate ? 'Locked' : 'Open'} // Privacy label
+                            ) : (
+                                <div className="space-y-4 overflow-y-auto max-h-[600px] pr-2 custom-scrollbar"> {/* Scrollable list container */}
+                                    {roomList.map(r => (
+                                        <div key={r.name} className="border-2 border-black p-4 space-y-4 hover:bg-gray-50 transition-colors bg-white group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"> {/* Room item card */}
+                                            <div className="flex justify-between items-start"> {/* Card layout */}
+                                                <div className="space-y-1"> {/* Room info group i*/}
+                                                    <p className="font-bold text-[10px] uppercase tracking-tighter">{r.name}</p> {/* Display room name */}
+                                                    <div className="flex items-center gap-2"> {/* Status indicators */}
+                                                        <span className={`text-[8px] px-1.5 py-0.5 border border-black font-black uppercase ${r.isPrivate ? 'bg-gray-100 text-black' : 'bg-black text-white'}`}> {/* Privacy tag */}
+                                                            {r.isPrivate ? 'Locked' : 'Open'}
                                                         </span>
-                                                        <span className="text-[8px] font-bold uppercase text-gray-500 italic"> // Game status text
-                                                            {r.status} // Current state label
+                                                        <span className="text-[8px] font-bold uppercase text-gray-500 italic"> {/* Game status text */}
+                                                            {r.status}
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className="text-right"> // Occupancy display
-                                                    <p className="text-[10px] font-black uppercase">{r.players}/2</p> // Ratio of players
+                                                <div className="text-right"> {/* Occupancy display */}
+                                                    <p className="text-[10px] font-black uppercase">{r.players}/2</p> {/* Ratio of players */}
                                                 </div>
                                             </div>
-                                            <button // Action button on each room card
-                                                disabled={r.players >= 2} // Disable if room is full
-                                                onClick={() => { // Click handler with logic
-                                                    if (!r.isPrivate) { // Direct join for public rooms
-                                                        connectRoom(r.name); // Execute join
-                                                    } else { // Password flow for private rooms
-                                                        setJoinRoomId(r.name); // Set target room
-                                                        setNeedsPassword(true); // Show password field
-                                                        setError(''); // Reset errors
+                                            <button
+                                                disabled={r.players >= 2}
+                                                onClick={() => {
+                                                    if (!r.isPrivate) {
+                                                        connectRoom(r.name);
+                                                    } else {
+                                                        setJoinRoomId(r.name);
+                                                        setNeedsPassword(true);
+                                                        setError('');
                                                     }
                                                 }}
-                                                className="w-full py-2 bg-black text-white border border-black text-[10px] font-black uppercase tracking-widest transition-all disabled:opacity-20 hover:bg-gray-800" // Button styling
+                                                className="w-full py-2 bg-black text-white border border-black text-[10px] font-black uppercase tracking-widest transition-all disabled:opacity-20 hover:bg-gray-800"
                                             >
-                                                {r.players >= 2 ? 'Full' : 'Join'} // Button text based on capacity
+                                                {r.players >= 2 ? 'Full' : 'Join'}
                                             </button>
                                         </div>
                                     ))}
@@ -337,106 +338,107 @@ export default function TicTacToe() { // Main component function for the Tic-Tac
     const isMyTurn = currentPlayer?.id === socket?.id; // Boolean flag checking if it is the local user's turn
 
     return ( // Return the active game UI once joined
-        <div className="min-h-screen bg-white flex items-center justify-center p-4 text-black font-sans text-[12px]"> // Full-screen centered layout
-            <div className="max-w-2xl w-full flex flex-col items-center space-y-8"> // Content container with responsive constraints
-                <div className="w-full flex justify-between items-center bg-white border-2 border-black p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"> // Top bar for room info
-                    <div className="space-y-1"> // Text info group
-                        <h2 className="text-lg font-bold uppercase tracking-wider">Node: <span className="font-mono">{room?.name}</span></h2> // Room name with mono font
-                        <p className="text-[10px] text-gray-500 flex items-center gap-2 uppercase font-bold"> // Status subtitle
-                           {room?.isPrivate ? <Lock className="w-3 h-3"/> : <Globe className="w-3 h-3"/>} // Privacy icon
-                           {room?.isPrivate ? 'Protected' : 'Standard'} Connection // Privacy description
+        <div className="min-h-screen bg-white flex items-center justify-center p-4 text-black font-sans text-[12px]"> {/* Full-screen centered layout */}
+            <div className="max-w-2xl w-full flex flex-col items-center space-y-8"> {/* Content container with responsive constraints */}
+                <div className="w-full flex justify-between items-center bg-white border-2 border-black p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"> {/* Top bar for room info */}
+                    <div className="space-y-1"> {/* Text info group */}
+                        <h2 className="text-lg font-bold uppercase tracking-wider">Node: <span className="font-mono">{room?.name}</span></h2> {/* Room name with mono font */}
+                        <p className="text-[10px] text-gray-500 flex items-center gap-2 uppercase font-bold"> {/* Status subtitle */}
+                           {room?.isPrivate ? <Lock className="w-3 h-3"/> : <Globe className="w-3 h-3"/>} {/* Privacy icon */}
+                           {room?.isPrivate ? 'Protected' : 'Standard'} Connection {/* Privacy description */}
                         </p>
                     </div>
-                    <button // Utility button for sharing room link
-                        onClick={copyLink} // Click handler
-                        className="flex items-center gap-2 px-4 py-2 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors" // Style definitions
+                    <button
+                        onClick={copyLink}
+                        className="flex items-center gap-2 px-4 py-2 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-gray-800 transition-colors"
                     >
-                        <Share2 className="w-3 h-3" /> Share // Icon and label
+                        <Share2 className="w-3 h-3" /> Share {/* Icon and label */}
                     </button>
                 </div>
 
-                <div className="w-full flex items-center gap-4"> // Visual divider section
-                    <div className="h-[2px] flex-1 bg-black"></div> // Left line
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap">Match Tally</span> // Divider label
-                    <div className="h-[2px] flex-1 bg-black"></div> // Right line
+                <div className="w-full flex items-center gap-4"> {/* Visual divider section */}
+                    <div className="h-[2px] flex-1 bg-black"></div> {/* Left line */}
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] whitespace-nowrap">Match Tally</span> {/* Divider label */}
+                    <div className="h-[2px] flex-1 bg-black"></div> {/* Right line */}
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 w-full"> // Tally/Scoreboard grid
-                    {room?.players.map((p, i) => ( // Loop through room participants
-                        <div key={p.id} className={`p-4 border-2 border-black transition-all ${room.currentPlayerIndex === i ? 'bg-black text-white shadow-[4px_4px_0px_0px_rgba(150,150,150,1)]' : 'bg-white text-black'}`}> // Scorecard with active state
-                            <div className="flex items-center justify-between"> // Inner layout
-                                <div className="flex flex-col"> // Name and score group
-                                    <span className="font-bold text-[10px] uppercase truncate pr-2">{p.name} {p.id === socket?.id && '(You)'}</span> // Name with ID verification
-                                    <span className="text-[8px] font-black italic uppercase opacity-50">Wins: {room.scores[p.id] || 0}</span> // Displayed win count
+                <div className="grid grid-cols-2 gap-4 w-full"> {/* Tally/Scoreboard grid */}
+                    {room?.players.map((p, i) => (
+                        <div key={p.id} className={`p-4 border-2 border-black transition-all ${room.currentPlayerIndex === i ? 'bg-black text-white shadow-[4px_4px_0px_0px_rgba(150,150,150,1)]' : 'bg-white text-black'}`}> {/* Scorecard with active state */}
+                            <div className="flex items-center justify-between">
+                                <div className="flex flex-col"> {/* Name and score group */}
+                                    <span className="font-bold text-[10px] uppercase truncate pr-2">{p.name} {p.id === socket?.id && '(You)'}</span> {/* Name with ID verification */}
+                                    <span className="text-[8px] font-black italic uppercase opacity-50">Wins: {room.scores[p.id] || 0}</span> {/* Displayed win count */}
                                 </div>
-                                <span className="text-xl font-bold font-mono">{p.symbol}</span> // Player's assigned symbol (X/O)
+                                <span className="text-xl font-bold font-mono">{p.symbol}</span> {/* Player's assigned symbol (X/O) */}
                             </div>
                         </div>
                     ))}
-                    {room?.players.length === 1 && ( // Display empty slot for missing player
-                        <div className="p-4 border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-[10px] font-bold uppercase"> // Waiting state box
-                            Waiting for Peer... // Visual text
+                    {room?.players.length === 1 && (
+                        <div className="p-4 border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center text-gray-400 text-[10px] font-bold uppercase"> {/* Waiting state box */}
+                            Waiting for Peer... {/* Visual text */}
                         </div>
                     )}
                 </div>
 
-                <div className="relative"> // Game board positioning wrapper
-                    <div className="grid grid-cols-3 gap-0 border-4 border-black bg-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]"> // 3x3 Grid container
-                        {room?.board.map((cell, i) => ( // Loop through 9 board squares
-                            <button // Individual square component
-                                key={i} // Unique index key
-                                onClick={() => makeMove(i)} // Interaction handler for a move
-                                disabled={!!cell || !isMyTurn || room.status !== 'playing'} // Logical disabling of inputs
+                <div className="relative"> {/* Game board positioning wrapper */}
+                    <div className="grid grid-cols-3 gap-0 border-4 border-black bg-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]"> {/* 3x3 Grid container */}
+                        {room?.board.map((cell, i) => (
+                            <button
+                                key={i}
+                                onClick={() => makeMove(i)}
+                                disabled={!!cell || !isMyTurn || room.status !== 'playing'}
                                 className={`w-24 h-24 sm:w-32 sm:h-32 bg-white flex items-center justify-center text-5xl sm:text-6xl font-black font-mono focus:outline-none highlight-none
-                                    ${!cell && isMyTurn && room.status === 'playing' ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-default'} // Hover state logic
-                                    ${i % 3 !== 2 ? 'border-r-2 border-black' : ''} // Vertical grid lines
-                                    ${i < 6 ? 'border-b-2 border-black' : ''} // Horizontal grid lines
+                                    ${!cell && isMyTurn && room.status === 'playing' ? 'hover:bg-gray-100 cursor-pointer' : 'cursor-default'}
+                                    ${i % 3 !== 2 ? 'border-r-2 border-black' : ''}
+                                    ${i < 6 ? 'border-b-2 border-black' : ''}
                                 `}
                             >
-                                {cell} // Display X, O or empty
+                                {cell} {/* Display X, O or empty */}
                             </button>
                         ))}
                     </div>
 
-                    {room?.status === 'ended' && ( // Overlay for game conclusion
-                        <div className="absolute inset-x-[-20px] inset-y-[-20px] bg-white/95 flex flex-col items-center justify-center p-6 text-center border-4 border-black shadow-[15px_15px_0px_0px_rgba(0,0,0,1)] z-20"> // Final result modal
-                             <h3 className="text-5xl font-black uppercase mb-6 tracking-tighter"> // Result header
-                                {room.winner === 'Draw' ? "Draw" : `${room.winner} Wins`} // Dynamic winner text
+                    {room?.status === 'ended' && (
+                        <div className="absolute inset-x-[-20px] inset-y-[-20px] bg-white/95 flex flex-col items-center justify-center p-6 text-center border-4 border-black shadow-[15px_15px_0px_0px_rgba(0,0,0,1)] z-20"> {/* Final result modal */}
+                             <h3 className="text-5xl font-black uppercase mb-6 tracking-tighter"> {/* Result header */}
+                                {room.winner === 'Draw' ? "Draw" : `${room.winner} Wins`}
                              </h3>
-                             <button // Button to restart or play again
-                                onClick={resetGame} // Reset function handler
-                                disabled={room.resetVotes.includes(socket?.id || '')} // Don't allow multiple votes from same player
+                             <button
+                                onClick={resetGame}
+                                disabled={room.resetVotes.includes(socket?.id || '')}
                                 className={`flex items-center gap-3 px-10 py-4 font-black uppercase tracking-[0.2em] transition-all shadow-[6px_6px_0px_0px_rgba(150,150,150,1)] ${
                                     room.resetVotes.includes(socket?.id || '') 
                                     ? 'bg-gray-200 text-gray-500 cursor-default' 
                                     : 'bg-black text-white hover:bg-gray-800'
                                 }`}
                              >
-                                <RefreshCw className={`w-5 h-5 ${room.resetVotes.includes(socket?.id || '') ? 'animate-spin' : ''}`}/> // Spinning refresh icon
-                                {room.resetVotes.length > 0 // Dynamic button text
+                                <RefreshCw className={`w-5 h-5 ${room.resetVotes.includes(socket?.id || '') ? 'animate-spin' : ''}`}/> {/* Spinning refresh icon */}
+                                {room.resetVotes.length > 0
                                     ? (room.resetVotes.includes(socket?.id || '') ? 'Acknowledged' : 'Accept Re-link') 
                                     : 'Re-Link'
                                 }
                              </button>
-                             {room.resetVotes.length === 1 && ( // Conditional helper text during voting
-                                <p className="mt-4 text-[8px] font-black uppercase text-gray-400 animate-pulse"> // Sub-status line
+                             {room.resetVotes.length === 1 && (
+                                <p className="mt-4 text-[8px] font-black uppercase text-gray-400 animate-pulse"> {/* Sub-status line */}
                                     {room.resetVotes.includes(socket?.id || '') 
                                         ? "Waiting for peer to accept..." 
-                                        : "Peer wants to play again"} // Inform user about voting status
+                                        : "Peer wants to play again"}
                                 </p>
                              )}
                         </div>
                     )}
                 </div>
 
-                <div className="text-center h-10"> // Dynamic status footer
-                    {room?.status === 'playing' && ( // Current turn announcement
-                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400"> // Turn text styling
-                             {isMyTurn ? "Your Sequence" : `Peer Sequence: ${currentPlayer?.name}`} // Local vs remote player indicator
+                <div className="text-center h-10"> {/* Dynamic status footer */}
+                    {room?.status === 'playing' && (
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400"> {/* Turn text styling */}
+                             {isMyTurn ? "Your Sequence" : `Peer Sequence: ${currentPlayer?.name}`}
                         </p>
                     )}
-                    {room?.status === 'waiting' && ( // Waiting state indicator
-                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 animate-pulse italic">Scanning for Peers...</p> // Searching message
+                    {room?.status === 'waiting' && (
+                        /* Searching message */
+                        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 animate-pulse italic">Scanning for Peers...</p>
                     )}
                 </div>
             </div>

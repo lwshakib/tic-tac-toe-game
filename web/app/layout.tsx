@@ -23,11 +23,14 @@ export default function RootLayout({ // Define the root layout component that wr
   children: React.ReactNode; // Type definition for children as React nodes
 }>) {
   return (
-    <html lang="en"> // Define the HTML document with English language setting
-      <body // Body element of the document
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`} // Apply font variables and antialiasing class
+    /* Define the HTML document with English language setting */
+    <html lang="en">
+      <body
+        /* Apply font variables and antialiasing class */
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children} // Render the nested page content here
+        {/* Render the nested page content here */}
+        {children}
       </body>
     </html>
   );
