@@ -35,6 +35,13 @@ The backend service for the Tic-Tac-Toe Multiplayer Grid Protocol. Built with **
 -   `room-list`: Broadcast to all clients when the list of active rooms changes.
 -   `error`: Sent to specific sockets when an action fails (e.g., wrong password, room full).
 
+## ⚙️ Environment Configuration
+
+The server uses the following environment variables:
+- `PORT`: The port the server will listen on (default: `3001`).
+
+To configure, copy `.env.example` to `.env` and adjust the values as needed.
+
 ## 🏃‍♂️ Development
 
 ```bash
