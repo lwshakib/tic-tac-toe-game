@@ -26,14 +26,14 @@ This project reimagines the classic Tic-Tac-Toe game as a **"Multiplayer Grid Pr
     -   Create public or private rooms.
     -   Secure private rooms with access passwords.
     -   "Live Nodes" dashboard to see active rooms.
--   **Minimalist UI**: A monochrome, data-centric design language inspired by brutalist architecture.
+-   **Minimalist UI**: A monochrome, data-centric design language inspired by **Neo-Brutalist** architecture and high-contrast terminal aesthetics.
 -   **Session Tracking**: Persistent win counting and mutual re-link (rematch) functionality.
 -   **Smart Join**: Direct specific room connection via ID or browsing the active node list.
 
 ## 🛠 Tech Stack
 
 -   **Runtime**: [Bun](https://bun.sh/)
--   **Frontend**: [Next.js 15](https://nextjs.org/) (App Router), [Tailwind CSS](https://tailwindcss.com/)
+-   **Frontend**: [Next.js 16](https://nextjs.org/) (App Router), [Tailwind CSS 4](https://tailwindcss.com/) / Lucide Icons
 -   **Backend**: [Socket.IO](https://socket.io/), [Node.js](https://nodejs.org/) (running on Bun)
 -   **State Management**: React Hooks & Socket.IO events
 
