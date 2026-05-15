@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Build, Lint, and Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.9
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Check Formatting
+        run: pnpm run format:check
+
+      - name: Run Linter
+        run: pnpm run lint
+
+      - name: Run Typecheck
+        run: pnpm run typecheck
+
+      - name: Build Project
+        run: pnpm run build

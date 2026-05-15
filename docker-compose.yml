@@ -1,0 +1,54 @@
+# Docker Compose configuration to orchestrate the backend and frontend services
+services:
+  # Game backend service (Socket.IO server)
+  server:
+    # Build configuration for the server service
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    # Map host port 4000 to container port 4000
+    ports:
+      - "4000:4000"
+    # Set environment variables for the server
+    environment:
+      - PORT=4000
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/tictactoe
+    depends_on:
+      - db
+    # Restart policy
+    restart: always
+
+  # Game frontend service (Next.js application)
+  web:
+    # Build configuration for the web service
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    # Map host port 3000 to container port 3000
+    ports:
+      - "3000:3000"
+    # Pass environment variables to the frontend build process
+    environment:
+      - NEXT_PUBLIC_SOCKET_URL=http://localhost:4000
+    # Ensure the server and database are started before the web client
+    depends_on:
+      - server
+      - db
+    # Restart policy
+    restart: always
+
+  # PostgreSQL database service
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tictactoe
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
